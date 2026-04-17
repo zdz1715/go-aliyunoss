@@ -14,7 +14,7 @@
 ## 安装
 
 ```bash
-go get github.com/zdz1715/appender/aliyunoss
+go get github.com/zdz1715/go-aliyunoss
 ```
 
 ## 快速开始

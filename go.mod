@@ -1,4 +1,4 @@
-module github.com/zdz1715/aliyunoss
+module github.com/zdz1715/go-aliyunoss
 
 go 1.18
 
