@@ -47,7 +47,7 @@ func NewClient(cfg Config) *Client {
 	return c
 }
 
-func (c *Client) key(key string) string {
+func (c *Client) Key(key string) string {
 	key = strings.Trim(key, "/")
 	if c.cfg.ObjectPrefix == "" {
 		return key
@@ -56,7 +56,7 @@ func (c *Client) key(key string) string {
 }
 
 func (c *Client) GetContent(ctx context.Context, id string) (io.ReadCloser, error) {
-	key := c.key(id)
+	key := c.Key(id)
 	resp, err := c.cc.GetObject(ctx, &oss.GetObjectRequest{
 		Bucket: oss.Ptr(c.cfg.Bucket),
 		Key:    oss.Ptr(key),
@@ -68,8 +68,7 @@ func (c *Client) GetContent(ctx context.Context, id string) (io.ReadCloser, erro
 }
 
 func (c *Client) Get(ctx context.Context, id string) (*appender.Metadata, error) {
-	key := c.key(id)
-
+	key := c.Key(id)
 	resp, err := c.cc.Presign(ctx, &oss.GetObjectRequest{
 		Bucket:                     oss.Ptr(c.cfg.Bucket),
 		Key:                        oss.Ptr(key),
@@ -86,12 +85,12 @@ func (c *Client) Get(ctx context.Context, id string) (*appender.Metadata, error)
 	}, nil
 }
 
-func (c *Client) V2Client() *oss.Client {
+func (c *Client) Client() *oss.Client {
 	return c.cc
 }
 
 func (c *Client) Append(ctx context.Context, id string, data []byte, offset int64) error {
-	key := c.key(id)
+	key := c.Key(id)
 	_, err := c.cc.AppendObject(ctx, &oss.AppendObjectRequest{
 		Bucket:      oss.Ptr(c.cfg.Bucket),
 		Key:         oss.Ptr(key),
@@ -103,7 +102,7 @@ func (c *Client) Append(ctx context.Context, id string, data []byte, offset int6
 }
 
 func (c *Client) Delete(ctx context.Context, id string) error {
-	key := c.key(id)
+	key := c.Key(id)
 	_, err := c.cc.DeleteObject(ctx, &oss.DeleteObjectRequest{
 		Bucket: oss.Ptr(c.cfg.Bucket),
 		Key:    oss.Ptr(key),

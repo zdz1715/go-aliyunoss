@@ -217,10 +217,10 @@ if err != nil {
 }
 ```
 
-#### 获取 V2 Client
+#### 获取 OSS Client
 
 ```go
-ossClient := client.V2Client()
+ossClient := client.Client()
 // 使用 OSS SDK 的其他功能
 ```
 
