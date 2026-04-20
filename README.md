@@ -36,7 +36,7 @@ func main() {
 
     // 创建 OSS 客户端
     cfg := aliyunoss.Config{
-        Region:          "oss-cn-hangzhou",
+        Region:          "cn-hangzhou",
         AccessKeyId:     os.Getenv("ALIYUN_ACCESS_KEY_ID"),
         AccessKeySecret: os.Getenv("ALIYUN_ACCESS_KEY_SECRET"),
         Bucket:          "my-bucket",
@@ -55,7 +55,7 @@ func main() {
 
 ```go
 cfg := aliyunoss.Config{
-    Region:          "oss-cn-hangzhou",
+    Region:          "cn-hangzhou",
     AccessKeyId:     os.Getenv("ALIYUN_ACCESS_KEY_ID"),
     AccessKeySecret: os.Getenv("ALIYUN_ACCESS_KEY_SECRET"),
     Bucket:          "my-bucket",
@@ -93,11 +93,11 @@ type Config struct {
 
 阿里云 OSS 区域，例如：
 
-- `oss-cn-hangzhou` - 华东 1（杭州）
-- `oss-cn-shanghai` - 华东 2（上海）
-- `oss-cn-beijing` - 华北 1（北京）
-- `oss-cn-shenzhen` - 华南 1（深圳）
-- `oss-cn-guangzhou` - 华南 2（广州）
+- `cn-hangzhou` - 华东 1（杭州）
+- `cn-shanghai` - 华东 2（上海）
+- `cn-beijing` - 华北 1（北京）
+- `cn-shenzhen` - 华南 1（深圳）
+- `cn-guangzhou` - 华南 2（广州）
 
 #### AccessKeyId / AccessKeySecret
 
@@ -193,7 +193,6 @@ fmt.Printf("Expires at: %v\n", metadata.Expiration)
 
 **说明**:
 - 返回预签名的下载 URL
-- URL 格式: `https://{bucket}.{endpoint}/{key}?{signature}`
 - `Expiration` 为 URL 的过期时间
 
 #### 下载内容
@@ -298,7 +297,3 @@ ErrorMessage: The object size exceeds the maximum allowed size.
 - [阿里云 OSS 文档](https://help.aliyun.com/zh/oss/) - 官方文档
 - [阿里云 OSS Go SDK](https://github.com/aliyun/alibabacloud-oss-go-sdk-v2) - SDK 文档
 - [追加上传文档](https://help.aliyun.com/zh/oss/user-guide/append-upload-11) - 追加上传说明
-
-## License
-
-MIT License
